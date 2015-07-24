@@ -36,9 +36,8 @@ fi
 JAVA=$JAVA_HOME/bin/java
 
 export HADOOP_HOME_WARN_SUPPRESS=1
-
-# Hadoop home directory
-export HADOOP_HOME=${HADOOP_HOME:-/usr/lib/hadoop}
+# Use standard PID directory
+export PID_DIR=/var/run/cdap
     </value>
   </property>
 </configuration>
