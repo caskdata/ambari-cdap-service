@@ -920,7 +920,6 @@
     </description>
   </property>
 
-  
   <property>
     <name>kerberos.auth.enabled</name>
     <value>false</value>

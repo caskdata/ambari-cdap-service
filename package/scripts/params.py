@@ -28,7 +28,7 @@ package_dir = os.path.realpath(__file__).split('/package')[0] + '/package/'
 files_dir = package_dir + 'files/'
 scripts_dir = package_dir + 'scripts/'
 distribution = platform.linux_distribution()[0].lower()
-hostname = config['hostname']
+hostname = config['hostname'].lower()
 java64_home = config['hostLevelParams']['java_home']
 user_group = config['configurations']['cluster-env']['user_group']
 
@@ -83,8 +83,7 @@ cdap_principal_name = config['configurations']['cdap-env']['cdap_principal_name'
 cdap_user_keytab = config['configurations']['cdap-env']['cdap_user_keytab']
 
 if security_enabled:
-    _hostname_lower = config['hostname'].lower()
-    master_jaas_princ = config['configurations']['cdap-site']['cdap.master.kerberos.principal'].replace('_HOST', _hostname_lower)
+    master_jaas_princ = config['configurations']['cdap-site']['cdap.master.kerberos.principal'].replace('_HOST', hostname)
     master_keytab_path = config['configurations']['cdap-site']['cdap.master.kerberos.keytab']
     client_jaas_config_file = format("{cdap_conf_dir}/cdap_client_jaas.conf")
     master_jaas_config_file = format("{cdap_conf_dir}/cdap_master_jaas.conf")
