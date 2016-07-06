@@ -72,7 +72,7 @@ class Master(Script):
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade force')
         Execute(
             upgrade_cmd,
-            user=params.cdap_user
+            user=params.cdap_user,
             not_if=self.status
         )
 
@@ -81,7 +81,7 @@ class Master(Script):
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade_hbase force')
         Execute(
             upgrade_cmd,
-            user=params.cdap_user
+            user=params.cdap_user,
             not_if=self.status
         )
 
@@ -90,7 +90,7 @@ class Master(Script):
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.flow.FlowQueuePendingCorrector')
         Execute(
             upgrade_cmd,
-            user=params.cdap_user
+            user=params.cdap_user,
             only_if=self.status
         )
 
