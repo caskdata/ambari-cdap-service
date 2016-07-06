@@ -59,6 +59,32 @@
               <dictionaryName>cdap-env</dictionaryName>
             </configFile>
           </configFiles>
+          <customCommands>
+            <customCommand>
+              <name>UPGRADE</name>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+            <customCommand>
+              <name>UPGRADE_HBASE</name>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+            <customCommand>
+              <name>POSTUPGRADE</name>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+          </customCommands>
           <dependencies>
             <dependency>
               <name>CDAP/CDAP_KAFKA</name>
