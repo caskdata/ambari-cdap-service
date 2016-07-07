@@ -31,7 +31,7 @@
       {
         "name": "cdap_master_process",
         "label": "CDAP Master Process",
-        "description": "This alert is triggered if the CDAP Master processes cannot be confirmed to be up and listening on the network for the configured critical threshold, given in seconds.",
+        "description": "This alert is triggered if the CDAP Master processes cannot be confirmed to be running for the configured critical threshold, given in seconds.",
         "interval": 1,
         "scope": "SERVICE",
         "enabled": true,

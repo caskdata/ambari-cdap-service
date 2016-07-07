@@ -25,6 +25,7 @@ RESULT_STATE_UNKNOWN = 'UNKNOWN'
 LOGGER_EXCEPTION_MESSAGE = "[Alert] CDAP Master Health on {0} fails:"
 logger = logging.getLogger('ambari_alerts')
 
+
 def execute(configurations={}, parameters={}, host_name=None):
     if configurations is None:
         return (RESULT_STATE_UNKNOWN, ['There were no configurations supplied to the script.'])
