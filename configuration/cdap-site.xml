@@ -301,6 +301,9 @@
   <property>
     <name>app.temp.dir</name>
     <value>/tmp</value>
+    <description>
+      Temp directory
+    </description>
   </property>
 
   <property>
@@ -353,7 +356,7 @@
 
   <property>
     <name>data.tx.client.count</name>
-    <value>5</value>
+    <value>50</value>
     <description>
       The number of pooled instances of the transaction client;
       increase this to increase transaction concurrency
@@ -366,7 +369,7 @@
 
   <property>
     <name>data.tx.client.provider</name>
-    <value>thread-local</value>
+    <value>pool</value>
     <description>
       Provider strategy for transaction clients; valid values are "pool" and
       "thread-local"
@@ -1369,6 +1372,17 @@
   </property>
 
   <property>
+    <name>router.server.boss.threads</name>
+    <value>1</value>
+    <description>The number of boss threads in the CDAP Router service</description>
+    <value-attributes>
+      <type>int</type>
+      <minimum>1</minimum>
+      <overridable>false</overridable>
+    </value-attributes>
+  </property>
+
+  <property>
     <name>router.server.port</name>
     <value>${router.bind.port}</value>
     <final>true</final>
@@ -1684,12 +1698,6 @@
     <name>metadata.program.run.history.keepdays</name>
     <value>30</value>
     <description>Specifies the number of days to keep program run run-history in metadata</description>
-  </property>
-
-  <property>
-    <name>router.server.boss.threads</name>
-    <value>1</value>
-    <description>The number of boss threads in the CDAP Router service</description>
   </property>
 
   -->
