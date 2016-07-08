@@ -30,12 +30,10 @@
               <fileName>cdap-site.xml</fileName>
               <dictionaryName>cdap-site</dictionaryName>
             </configFile>
-            <configFile>
-              <type>env</type>
-              <fileName>cdap-env.sh</fileName>
-              <dictionaryName>cdap-env</dictionaryName>
-            </configFile>
           </configFiles>
+          <configuration-dependencies>
+            <config-type>cdap-site</config-type>
+          </configuration-dependencies>
         </component>
 
         <component>
@@ -43,12 +41,54 @@
           <name>CDAP_MASTER</name>
           <displayName>CDAP Master</displayName>
           <category>MASTER</category>
-          <cardinality>1</cardinality>
+          <cardinality>1+</cardinality>
+          <timelineAppid>CDAP</timelineAppid>
           <commandScript>
             <script>scripts/master.py</script>
             <scriptType>PYTHON</scriptType>
             <timeout>600</timeout>
           </commandScript>
+          <configFiles>
+            <configFile>
+              <type>xml</type>
+              <fileName>cdap-site.xml</fileName>
+              <dictionaryName>cdap-site</dictionaryName>
+            </configFile>
+            <configFile>
+              <type>env</type>
+              <fileName>cdap-env.sh</fileName>
+              <dictionaryName>cdap-env</dictionaryName>
+            </configFile>
+          </configFiles>
+          <customCommands>
+            <customCommand>
+              <name>UPGRADE</name>
+              <displayName>Run CDAP Upgrade Tool</displayName>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+            <customCommand>
+              <name>UPGRADE_HBASE</name>
+              <displayName>Run CDAP HBase Coprocessor Upgrade Tool</displayName>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+            <customCommand>
+              <name>POSTUPGRADE</name>
+              <displayName>Run CDAP Post-Upgrade Tasks</displayName>
+              <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>1800</timeout>
+              </commandScript>
+            </customCommand>
+          </customCommands>
           <dependencies>
             <dependency>
               <name>CDAP/CDAP_KAFKA</name>
@@ -153,12 +193,25 @@
           <name>CDAP_ROUTER</name>
           <displayName>CDAP Router</displayName>
           <category>MASTER</category>
-          <cardinality>1</cardinality>
+          <cardinality>1+</cardinality>
+          <timelineAppid>CDAP</timelineAppid>
           <commandScript>
             <script>scripts/router.py</script>
             <scriptType>PYTHON</scriptType>
             <timeout>600</timeout>
           </commandScript>
+          <configFiles>
+            <configFile>
+              <type>xml</type>
+              <fileName>cdap-site.xml</fileName>
+              <dictionaryName>cdap-site</dictionaryName>
+            </configFile>
+            <configFile>
+              <type>env</type>
+              <fileName>cdap-env.sh</fileName>
+              <dictionaryName>cdap-env</dictionaryName>
+            </configFile>
+          </configFiles>
           <dependencies>
             <dependency>
               <name>ZOOKEEPER/ZOOKEEPER_SERVER</name>
@@ -189,12 +242,16 @@
           <name>CDAP_UI</name>
           <displayName>CDAP UI</displayName>
           <category>MASTER</category>
-          <cardinality>1</cardinality>
+          <cardinality>1+</cardinality>
+          <timelineAppid>CDAP</timelineAppid>
           <commandScript>
             <script>scripts/ui.py</script>
             <scriptType>PYTHON</scriptType>
             <timeout>600</timeout>
           </commandScript>
+          <configuration-dependencies>
+            <config-type>cdap-site</config-type>
+          </configuration-dependencies>
         </component>
 
       </components>
