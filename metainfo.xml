@@ -238,7 +238,7 @@
           <!-- CDAP Auth Server -->
           <name>CDAP_AUTH_SERVER</name>
           <displayName>CDAP Auth Server</displayName>
-          <category>SLAVE</category>
+          <category>MASTER</category>
           <cardinality>0+</cardinality>
           <commandScript>
             <script>scripts/auth.py</script>
