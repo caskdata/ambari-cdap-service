@@ -96,9 +96,9 @@ class Master(Script):
 
     def queue_debugger(self, env):
         print 'Run CDAP Queue Debugger Tool'
-        upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.HBaseQueueDebugger')
+        debugger_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.HBaseQueueDebugger')
         Execute(
-            upgrade_cmd,
+            debugger_cmd,
             user=params.cdap_user,
             only_if=self.status
         )
