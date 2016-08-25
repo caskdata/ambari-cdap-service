@@ -1,5 +1,5 @@
 # coding=utf8
-# Copyright © 2015 Cask Data, Inc.
+# Copyright © 2015-2016 Cask Data, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
@@ -39,7 +39,7 @@ class Kafka(Script):
         import status_params
         env.set_params(params)
         self.configure(env)
-        daemon_cmd = format('/opt/cdap/kafka/bin/svc-kafka-server start')
+        daemon_cmd = format('/opt/cdap/kafka/bin/cdap kafka-server start')
         no_op_test = format('ls {status_params.cdap_kafka_pid_file} >/dev/null 2>&1 && ps -p $(<{status_params.cdap_kafka_pid_file}) >/dev/null 2>&1')
         Execute(
             daemon_cmd,
