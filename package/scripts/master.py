@@ -68,41 +68,45 @@ class Master(Script):
         helpers.cdap_config('master')
 
     def upgrade(self, env):
-        print('Run CDAP Upgrade Tool')
-        import params
-        upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade force')
-        Execute(
-            upgrade_cmd,
-            user=params.cdap_user,
-            not_if=self.status
+        self.run_class(
+            env,
+            classname='co.cask.cdap.data.tools.UpgradeTool',
+            label='CDAP Upgrade Tool',
+            arguments='upgrade force'
         )
 
     def upgrade_hbase(self, env):
-        print('Run CDAP HBase Coprocessor Upgrade Tool')
-        import params
-        upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade_hbase force')
-        Execute(
-            upgrade_cmd,
-            user=params.cdap_user,
-            not_if=self.status
+        self.run_class(
+            env,
+            classname='co.cask.cdap.data.tools.UpgradeTool',
+            label='CDAP HBase Coprocessor Upgrade Tool',
+            arguments='upgrade_hbase force'
         )
 
     def postupgrade(self, env):
-        print('Run CDAP Post-Upgrade Tool')
-        import params
-        upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.flow.FlowQueuePendingCorrector')
-        Execute(
-            upgrade_cmd,
-            user=params.cdap_user,
-            only_if=self.status
+        self.run_class(
+            env,
+            classname='co.cask.cdap.data.tools.flow.FlowQueuePendingCorrector',
+            label='CDAP Post-Upgrade Tool'
         )
 
     def queue_debugger(self, env):
-        print('Run CDAP Queue Debugger Tool')
+        self.run_class(
+            env,
+            classname='co.cask.cdap.data.tools.HBaseQueueDebugger',
+            label='CDAP Queue Debugger Tool'
+        )
+
+    def run_class(self, env, classname, label=None, arguments=None):
+        if label is None:
+            label = classname
+        if arguments is None:
+            arguments = ''
+        print('Running: ' + label)
         import params
-        debugger_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.HBaseQueueDebugger')
+        cmd = format("/opt/cdap/master/bin/svc-master run %s %s" % (classname, arguments))
         Execute(
-            debugger_cmd,
+            cmd,
             user=params.cdap_user,
             only_if=self.status
         )
