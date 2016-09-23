@@ -112,6 +112,15 @@ def has_hive():
         return false
 
 
+def generate_quorum(hosts, port):
+    quorum = ''
+    for i, val in enumerate(hosts):
+        quorum += val + ':' + port
+        if (i + 1) < len(hosts):
+            quorum += ','
+    return quorum
+
+
 def get_hdp_version():
     command = 'hadoop version'
     return_code, hdp_output = shell.call(command, timeout=20)
