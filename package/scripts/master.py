@@ -1,5 +1,5 @@
 # coding=utf8
-# Copyright © 2015 Cask Data, Inc.
+# Copyright © 2015-2016 Cask Data, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
@@ -20,7 +20,7 @@ from resource_management import *
 
 class Master(Script):
     def install(self, env):
-        print 'Install the CDAP Master'
+        print('Install the CDAP Master')
         import params
         # Add repository file
         helpers.add_repo(
@@ -36,7 +36,7 @@ class Master(Script):
         self.configure(env)
 
     def start(self, env):
-        print 'Start the CDAP Master'
+        print('Start the CDAP Master')
         import params
         import status_params
         env.set_params(params)
@@ -55,20 +55,20 @@ class Master(Script):
         )
 
     def stop(self, env):
-        print 'Stop the CDAP Master'
+        print('Stop the CDAP Master')
         Execute('service cdap-master stop')
 
     def status(self, env):
         Execute('service cdap-master status')
 
     def configure(self, env):
-        print 'Configure the CDAP Master'
+        print('Configure the CDAP Master')
         import params
         env.set_params(params)
         helpers.cdap_config('master')
 
     def upgrade(self, env):
-        print 'Run CDAP Upgrade Tool'
+        print('Run CDAP Upgrade Tool')
         import params
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade force')
         Execute(
@@ -78,7 +78,7 @@ class Master(Script):
         )
 
     def upgrade_hbase(self, env):
-        print 'Run CDAP HBase Coprocessor Upgrade Tool'
+        print('Run CDAP HBase Coprocessor Upgrade Tool')
         import params
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.UpgradeTool upgrade_hbase force')
         Execute(
@@ -88,7 +88,7 @@ class Master(Script):
         )
 
     def postupgrade(self, env):
-        print 'Run CDAP Post-Upgrade Tool'
+        print('Run CDAP Post-Upgrade Tool')
         import params
         upgrade_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.flow.FlowQueuePendingCorrector')
         Execute(
@@ -98,7 +98,7 @@ class Master(Script):
         )
 
     def queue_debugger(self, env):
-        print 'Run CDAP Queue Debugger Tool'
+        print('Run CDAP Queue Debugger Tool')
         import params
         debugger_cmd = format('/opt/cdap/master/bin/svc-master run co.cask.cdap.data.tools.HBaseQueueDebugger')
         Execute(

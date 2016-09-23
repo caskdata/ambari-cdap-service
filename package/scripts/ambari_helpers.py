@@ -44,7 +44,7 @@ def add_repo(source, dest):
 
 def cdap_config(name=None):
     import params
-    print 'Setting up CDAP configuration for ' + name
+    print('Setting up CDAP configuration for ' + name)
     # We're only setup for *NIX, for now
     Directory(
         params.etc_prefix_dir,
