@@ -97,11 +97,9 @@ class Master(Script):
             label='CDAP Queue Debugger Tool'
         )
 
-    def run_class(self, env, classname, label=None, arguments=None):
+    def run_class(self, env, classname, label=None, arguments=''):
         if label is None:
             label = classname
-        if arguments is None:
-            arguments = ''
         print('Running: ' + label)
         import params
         cmd = format("/opt/cdap/master/bin/svc-master run %s %s" % (classname, arguments))

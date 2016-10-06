@@ -113,12 +113,8 @@ def has_hive():
 
 
 def generate_quorum(hosts, port):
-    quorum = ''
-    for i, val in enumerate(hosts):
-        quorum += val + ':' + port
-        if (i + 1) < len(hosts):
-            quorum += ','
-    return quorum
+    p = ':' + port
+    return (p + ',').join(hosts) + p
 
 
 def get_hdp_version():
