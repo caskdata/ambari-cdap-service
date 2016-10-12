@@ -44,18 +44,16 @@ def add_repo(source, dest):
 
 def cdap_config(name=None):
     import params
-    print 'Setting up CDAP configuration for ' + name
+    print('Setting up CDAP configuration for ' + name)
     # We're only setup for *NIX, for now
     Directory(
         params.etc_prefix_dir,
         mode=0755
     )
 
-    Directory(
-        params.cdap_conf_dir,
-        owner=params.cdap_user,
-        group=params.user_group,
-        recursive=True
+    # Why don't we use Directory here? A: parameters changed between Ambari minor versions
+    Execute(
+        "mkdir -p %s && chown %s:%s %s" % (params.cdap_conf_dir, params.cdap_user, params.user_group, params.cdap_conf_dir)
     )
 
     XmlConfig(
@@ -110,6 +108,11 @@ def has_hive():
         return true
     else:
         return false
+
+
+def generate_quorum(hosts, port):
+    p = ':' + port
+    return (p + ',').join(hosts) + p
 
 
 def get_hdp_version():

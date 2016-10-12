@@ -20,7 +20,7 @@ from resource_management import *
 
 class Auth(Script):
     def install(self, env):
-        print 'Install the CDAP Auth Server'
+        print('Install the CDAP Auth Server')
         import params
         # Add repository file
         helpers.add_repo(
@@ -34,7 +34,7 @@ class Auth(Script):
         self.configure(env)
 
     def start(self, env):
-        print 'Start the CDAP Auth Server'
+        print('Start the CDAP Auth Server')
         import params
         import status_params
         env.set_params(params)
@@ -48,14 +48,14 @@ class Auth(Script):
         )
 
     def stop(self, env):
-        print 'Stop the CDAP Auth Server'
+        print('Stop the CDAP Auth Server')
         Execute('service cdap-auth-server stop')
 
     def status(self, env):
         Execute('service cdap-auth-server status')
 
     def configure(self, env):
-        print 'Configure the CDAP Auth Server'
+        print('Configure the CDAP Auth Server')
         import params
         env.set_params(params)
         helpers.cdap_config('auth')
