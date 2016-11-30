@@ -485,7 +485,7 @@
 
   <property>
     <name>data.tx.num.cores</name>
-    <value>2</value>
+    <value>1</value>
     <description>
       Number of cores for the transaction service
     </description>
@@ -1024,7 +1024,7 @@
 
   <property>
     <name>master.service.num.cores</name>
-    <value>2</value>
+    <value>1</value>
     <description>
       Number of cores for master service instance
     </description>
@@ -1205,7 +1205,7 @@
 
   <property>
     <name>metrics.num.cores</name>
-    <value>2</value>
+    <value>1</value>
     <description>
       Number of virtual cores for the metrics service
     </description>
