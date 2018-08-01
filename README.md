@@ -2,9 +2,9 @@
 
 This project is an Ambari service definition for [CDAP](http://cask.co/products/cdap/).
 
-This has been tested on Ambari 2.2, 2.3, and 2.4 as shipped by Hortonworks and has been tested
-on HDP 2.2, 2.3, 2.4, and 2.5 for most functionality. Certain functions are dependent on the version
-of Ambari in use, such as Quick Links, which is only supported in Ambari 2.4+ for custom services.
+This has been tested on Ambari 2.2 through 2.5 as shipped by Hortonworks and has been tested
+on HDP 2.2 through 2.6 for most functionality. Certain functions are dependent on the version
+of Ambari in use, such as Quick Links and Management Packs, which are only supported in Ambari 2.4+ for custom services.
 
 New features are added to the `develop` branch and are released along with new CDAP major/minor
 versions using a release branch. Bug fixes and security features are backported.
@@ -17,7 +17,7 @@ to make CDAP an available service.
 
 ### Building from Source
 
-Simply checkout the repository and run `./build.sh` to build the RPM and DEB packages. This
+Simply checkout the repository and run `./build.sh` to build the RPM, DEB, management pack packages. This
 will check out the CDAP service using the latest release of CDAP. Specific major/minor releases
 of CDAP can be obtained by pulling the corresponding branch. For example, for CDAP 5.0, you would
 checkout the `release/5.0` branch.
@@ -35,6 +35,13 @@ sudo ambari-server restart
 
 ```
 sudo yum localinstall ./cdap-ambari-service*.rpm
+sudo ambari-server restart
+```
+
+#### Management Pack
+
+```
+sudo ambari-server install-mpack --mpack=cdap-ambari-service-mpack.tar.gz --verbose
 sudo ambari-server restart
 ```
 

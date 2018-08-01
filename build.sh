@@ -2,7 +2,7 @@
 
 PACKAGE_VERSION=${PACKAGE_VERSION:-5.0.0-SNAPSHOT}
 PACKAGE_ITERATION=${PACKAGE_ITERATION:-1}
-PACKAGE_FORMATS=${PACKAGE_FORMATS:-deb rpm}
+PACKAGE_FORMATS=${PACKAGE_FORMATS:-deb rpm tar}
 
 LICENSE="Copyright © 2015-2017 Cask Data, Inc. Licensed under the Apache License, Version 2.0."
 RPM_FPM_ARGS="-t rpm --rpm-os linux"
@@ -21,6 +21,8 @@ install() {
     build/var/lib/ambari-server/resources/stacks/*/*/services/CDAP/metainfo.xml \
     build/var/lib/ambari-server/resources/common-services/CDAP/*/alerts.json \
     build/var/lib/ambari-server/resources/common-services/CDAP/*/metainfo.xml
+  mkdir build/cdap-mpack
+  cp -R build/var/lib/ambari-server/resources build/cdap-mpack/
 }
 
 clean && setup && install
@@ -68,6 +70,12 @@ for p in ${PACKAGE_FORMATS} ; do
         -C ../build \
         var
       __ret=$?
+     ;;
+     tar)
+      tar \
+        -cvzf cdap-mpack-${PACKAGE_VERSION}-${PACKAGE_ITERATION}.tar.gz \
+        -C ../build \
+        cdap-mpack/resources/
      ;;
     *)
       echo "Unsupported format! ${p}"
